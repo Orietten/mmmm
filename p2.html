@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Коты</title>
+</head>
+
+<body>
+    <header id = "#header" class="header">
+        <div class="overlay">
+          <h1 id = "up" class="header-title">Муркоша</h1>
+        </div>
+      </header>
+      <header class = "second-header"> 
+          <div class = "second-overlay">
+              <h1 class = "second-header-title"> 
+                Приветствуем вас в нашем приюте для кошек!
+              </h1>
+          </div>
+      </header>
+      <header class = "navigation"> 
+              <nav > 
+                  <ul>
+                      <li> <a href = "index.html#header" target = "_self"> <u>Главная</u></a></li>
+                      <li> <a href = "index2.html">Самые спокойные породы кошек</a></li>
+                    
+                      <li> <a href = "anketa.html">Оставить заявку</a></li>
+                     
+                    </header>
+                  <div class="container">
+                      <h1 class="text-center">Наши кошки</h1>
+                      <div class="text-center mb-3">
+                          <label for="sortSelect">Сортировать по:</label>
+                          <select id="sortSelect" class="form-control d-inline-block w-auto" onchange="sortProducts()">
+                              <option value="name">Имя</option>
+                              <option value="price">Цена</option>
+                          </select>
+                      </div>
+                      <div class="row" id="productList">
+                      </div>
+                  </div>
+            
+                  <script>
+                      const products = [
+                          { name: 'Котята', price: 1000, image: 'kittens.jpg' },
+                          { name: 'Макар', price: 3000, image: 'IMG_6217.JPG' },
+                          { name: 'Капкейк', price: 1500, image: 'Siamese_cat_Vaillante.JPG' },
+                          { name: 'Муся', price: 2000, image: '40941_russkaya_golubaya_koshka_osobennosti_porody.jpeg' },
+                          { name: 'Федор', price: 2500, image: 'britanskaya_golubaya.jpg.webp' },
+                          { name: 'Федор', price: 3500, image: 'Persian Long Hair.1.jpg' },
+
+                         
+                      ];
+              
+                      function displayProducts() {
+                          const productList = document.getElementById('productList');
+                          productList.innerHTML = '';
+                          products.forEach(product => {
+                              const productCard = `
+                                  <div class="col-md-4 product-card">
+                                      <div class="card">
+                                          <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                                          <div class="card-body">
+                                              <h5 class="card-title">${product.name}</h5>
+                                              <p class="card-text">Цена: ${product.price} руб.</p>
+                                              <button class="btn btn-primary">Подать заявку</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              `;
+                              productList.innerHTML += productCard;
+                          });
+                      }
+              
+                      function sortProducts() {
+                          const sortBy = document.getElementById('sortSelect').value;
+                          products.sort((a, b) => {
+                              if (sortBy === 'name') {
+                                  return a.name.localeCompare(b.name);
+                              } else {
+                                  return a.price - b.price;
+                              }
+                          });
+                          displayProducts();
+                      }
+              
+                      
+                      displayProducts();
+                  </script>
+              </body>
+              </html>
+              
